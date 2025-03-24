@@ -31,7 +31,7 @@ This document outlines the technical specifications for a restaurant dine-in app
     - Order management (view, update, cancel orders).
     - Payment processing (cash, card, digital wallets).
     - Reporting and analytics dashboard.
-    - Integration with third-party delivery services.
+    - ~~Integration with third-party delivery services.~~ (Deferred for future enhancement)
 
 - **User Experience (UX):**
   - Intuitive navigation.
@@ -117,4 +117,3 @@ This document outlines the technical specifications for a restaurant dine-in app
 7. Payment is processed and an invoice is generated.
 8. Customer receives the invoice and completes the transaction.
 9. Customer submits feedback and earns loyalty points.
-
