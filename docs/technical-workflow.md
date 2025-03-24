@@ -57,9 +57,9 @@ This document explains the technical workflow of the **Dine-In Manager** applica
 ## **6. Customer Makes a Payment**
 - **Front-End:**
   - The customer initiates payment via the app's payment interface.
-  - A `POST /payment` API request is sent to the back-end, including the order ID and payment method (e.g., card, digital wallet).
+  - A `POST /payment` API request is sent to the back-end, including the order ID and payment method (e.g., card, digital wallet, cash).
 - **Back-End:**
-  - The payment request is forwarded to an external payment gateway (e.g., Stripe, PayPal) for processing.
+  - The payment request is forwarded to an dummy payment gateway for processing.
   - The payment gateway returns a success or failure response.
   - If successful:
     - The `Payments` table is updated with the payment details.
