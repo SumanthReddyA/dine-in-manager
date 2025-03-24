@@ -1,9 +1,9 @@
 # Dine-In Manager - Agile Phased Development Plan
 
-**Phase 1: Core Backend - Table & Menu Management API**
+**Phase 1: Core Backend - Table, Menu & Basic Order API**
 
-*   **Focus:** Establish the foundational backend API for managing restaurant data: tables and menu items. This phase is backend-heavy and sets the stage for the UI development in later phases.
-*   **Features:**
+*   **Focus:** Establish the foundational backend API for managing restaurant data (tables and menu items) **AND include a very basic API for order placement.**  This revised Phase 1 will still be backend-heavy but will deliver a minimal end-to-end flow for order creation.
+*   **Features (Revised Phase 1):**
     *   **Backend API Endpoints (Flask):**
         *   **Table Management:**
             *   `POST /tables`: Create a new table (Staff API)
@@ -17,16 +17,19 @@
             *   `GET /menu/{item_id}`: Get details of a specific menu item (Customer & Staff API)
             *   `PUT /menu/{item_id}`: Update menu item details (Staff API)
             *   `DELETE /menu/{item_id}`: Delete a menu item (Staff API)
-    *   **Database Models (PostgreSQL):** Define models for `Tables` and `Menu` in the database, including fields as per the technical specifications.
+        *   **Basic Order Management (Simplified for Phase 1):**
+            *   `POST /orders`: **Basic Order Creation (Staff API):**  Allow creating an order with minimal details -  initially, we can just focus on associating an order with a table and perhaps a few menu items.  We can simplify the order details for now.
+            *   `GET /orders/{order_id}`: Get basic details of a specific order (Staff API) -  just enough to confirm the order was created.
+    *   **Database Models (PostgreSQL):** Define models for `Tables`, `Menu`, and **basic `Orders`**.  The `Orders` model in Phase 1 can be simplified to include only essential fields (order ID, table ID, basic order status like "Created"). We can expand the `Orders` model in Phase 3.
     *   **Basic API Documentation:** Use FastAPI's automatic documentation (Swagger UI) for initial API exploration and testing.
-*   **Tech Stack (Phase 1):** Python, Flask, Flask-SQLAlchemy, PostgreSQL, (FastAPI for initial documentation - though backend will be in Flask)
-*   **Testing (Phase 1):**
-    *   **Unit Tests (Backend - pytest):** Write unit tests for Flask API endpoints, database model interactions, and business logic related to table and menu management. Focus on testing individual functions and API endpoint logic in isolation.
-    *   **API Endpoint Testing (Postman/Insomnia):** Manually test all API endpoints using Postman or Insomnia to ensure they function as expected, data is correctly saved and retrieved, and error handling is in place.
-*   **Demo Deliverables (Phase 1):**
-    *   Functional backend API for Table and Menu Management.
-    *   API documentation (Swagger UI) to demonstrate API endpoints and usage.
-    *   Unit tests demonstrating backend code quality and functionality.
+*   **Tech Stack (Phase 1 - Revised):** Python, Flask, Flask-SQLAlchemy, PostgreSQL, (FastAPI for initial documentation - though backend will be in Flask)
+*   **Testing (Phase 1 - Revised):**
+    *   **Unit Tests (Backend - pytest):** Write unit tests for Flask API endpoints, database model interactions, and business logic related to table, menu, **and basic order creation**.
+    *   **API Endpoint Testing (Postman/Insomnia):** Manually test all API endpoints including the basic order creation endpoint using Postman or Insomnia.
+*   **Demo Deliverables (Phase 1 - Revised):**
+    *   Functional backend API for Table and Menu Management **AND basic Order Creation.**
+    *   API documentation (Swagger UI) to demonstrate all Phase 1 API endpoints.
+    *   Unit tests demonstrating backend code quality and functionality, including basic order creation.
 
 **Phase 2: Staff UI - Table & Menu Management Interface**
 
