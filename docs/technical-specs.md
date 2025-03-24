@@ -1,7 +1,7 @@
 # Technical Specification Document for Restaurant Dine-In App
 
 ## 1. Introduction
-This document outlines the technical specifications for a restaurant dine-in application designed to streamline table management, menu updates, order tracking, payment processing, and invoice generation. The app will be scalable, secure, and compliant with local regulations.
+This document outlines the technical specifications for a restaurant dine-in application designed to streamline table management, menu updates, order tracking, Dummy Payment System, and invoice generation. The app will be scalable, secure, and compliant with local regulations.
 
 ---
 
@@ -21,7 +21,7 @@ This document outlines the technical specifications for a restaurant dine-in app
     - Table selection and reservation.
     - Interactive menu with categories, descriptions, and images.
     - Real-time order tracking.
-    - Payment gateway integration.
+    - Payment gateway simulation (Dummy Payment System to simulates real-world workflows success/failure states and     payment methods).
     - Invoice generation and download.
     - Loyalty program integration (points system for repeat customers).
     - Feedback system for post-dining reviews.
@@ -106,8 +106,7 @@ This document outlines the technical specifications for a restaurant dine-in app
 
 ---
 
-## 5. Order Lifecycle Flow Diagram
-
+## 5. Order Lifecycle
 ```plaintext
 1. Customer reserves a table.
 2. Customer views the menu and places an order.
