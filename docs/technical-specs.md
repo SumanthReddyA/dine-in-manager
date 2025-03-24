@@ -79,7 +79,7 @@ This document outlines the technical specifications for a restaurant dine-in app
 - **Business Logic:**
   - Order lifecycle management.
   - Real-time updates using WebSockets.
-  - Payment gateway integration (e.g., Stripe, PayPal).
+  - Payment gateway simulation (Dummy payment system)
   - Invoice generation using a PDF library (e.g., PDFKit).
   - Loyalty program logic (points calculation, rewards redemption).
   - Feedback collection and analysis.
