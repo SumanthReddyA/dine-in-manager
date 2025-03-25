@@ -36,14 +36,13 @@ def test_create_order(client):
     assert order.order_items[0].menu_item_id == 1 # Verify correct menu item
 
 def test_create_order_invalid_table_id(client):
-    response = client.post(
-        '/orders',
-        json={'table_id': 999, 'menu_item_ids': [1]} # Invalid table_id
-    )
-    assert response.status_code == 404 # Expect Not Found error
-    data = response.get_json()
-    assert 'message' in data
-    assert 'Table' in data['message'] # Check error message mentions "Table"
+        response = client.post(
+            '/orders',
+            json={'table_id': 999, 'menu_item_ids': [1]} # Invalid table_id
+        )
+        assert response.status_code == 404 # Expect Not Found error
+        data = response.get_json()
+        assert 'Resource not found' in data['message'] # Check error message mentions "Resource not found"
 
 def test_create_order_invalid_menu_item_id(client):
     response = client.post(
@@ -52,8 +51,7 @@ def test_create_order_invalid_menu_item_id(client):
     )
     assert response.status_code == 404 # Expect Not Found error
     data = response.get_json()
-    assert 'message' in data
-    assert 'Menu' in data['message'] # Check error message mentions "Menu"
+    assert 'Resource not found' in data['message'] # Check error message mentions "Resource not found"
 
 def test_create_order_missing_menu_item_ids(client):
     response = client.post(
@@ -63,7 +61,7 @@ def test_create_order_missing_menu_item_ids(client):
     assert response.status_code == 400 # Expect Bad Request error
     data = response.get_json()
     assert 'message' in data
-    assert 'menu_item_ids' in data['message'] # Check error message mentions "menu_item_ids"
+    assert 'Table ID and menu_item_ids are required' in data['message'] # Check error message mentions "Table ID and menu_item_ids are required"
 
 def test_create_order_order_date_set(client):
     response = client.post(
@@ -125,7 +123,7 @@ def test_get_order_invalid_order_id(client):
     assert response.status_code == 404 # Expect Not Found error
     data = response.get_json()
     assert 'message' in data
-    assert 'Order' in data['message'] # Check error message mentions "Order"
+    assert 'Resource not found' in data['message'] # Check error message mentions "Resource not found"
 
 def test_create_order_with_customer_notes(client):
     response = client.post(

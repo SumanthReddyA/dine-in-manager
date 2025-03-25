@@ -114,6 +114,21 @@ def get_table(table_id):
 def not_found_error(error):
     return jsonify({'message': 'Resource not found', 'resource': request.path}), 404
 
+@app.route('/orders', methods=['GET'])
+def get_orders():
+    orders = Order.query.all()
+    orders_list = []
+    for order in orders:
+        order_data = {
+            'order_id': order.order_id,
+            'table_id': order.table_id,
+            'order_date': order.order_date.isoformat(),
+            'status': order.status,
+            'customer_notes': order.customer_notes,
+        }
+        orders_list.append(order_data)
+    return jsonify({'orders': orders_list}), 200
+
 @app.errorhandler(400)
 def bad_request_error(error):
     return jsonify({'message': 'Bad request'}), 400
@@ -223,8 +238,11 @@ def create_order():
         return jsonify({'message': 'Table ID and menu_item_ids are required'}), 400
 
     table_id = data['table_id']
-    menu_item_ids = data['menu_item_ids']
+    menu_item_ids = data.get('menu_item_ids') # Use .get() to avoid KeyError if missing
     customer_notes = data.get('customer_notes')
+
+    if not menu_item_ids: # Check if menu_item_ids is empty
+        return jsonify({'message': 'Menu item IDs are required'}), 400
 
     table = Table.query.get_or_404(table_id) # Check if table exists
 
