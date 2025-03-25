@@ -5,15 +5,27 @@ import os
 
 app = Flask(__name__)
 
+# Set TESTING config based on environment variable
+if os.environ.get('TESTING_ENV') == 'TRUE':
+    app.config['TESTING'] = True
+    print("TESTING_ENV detected - TESTING MODE enabled in app.py") # Confirmation message
+else:
+    app.config['TESTING'] = False
+    print("TESTING_ENV not detected - NORMAL MODE in app.py") # Confirmation message
+
+
 # Construct database URI, reading password from environment variable
 db_username = os.environ.get('POSTGRES_USERNAME')
 db_password = os.environ.get('POSTGRES_PASSWORD')
 
-if db_password:
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_username}:{db_password}@localhost/dine_in_db'
-else:
-    raise ValueError("POSTGRES_PASSWORD environment variable not set. Please set it to your PostgreSQL password.")
-
+if app.config['TESTING']:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:' # Force in-memory SQLite for tests
+    print("TESTING MODE - SQLALCHEMY_DATABASE_URI:", app.config['SQLALCHEMY_DATABASE_URI']) # Print URI in testing mode
+else: # Keep original logic for non-testing environments
+    if db_password:
+        app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_username}:{db_password}@localhost/dine_in_db'
+    elif not app.config['TESTING']: # Raise ValueError only if NOT in testing AND db_password not set
+        raise ValueError("POSTGRES_PASSWORD environment variable not set. Please set it to your PostgreSQL password.")
 db = SQLAlchemy(app)
 
 class Table(db.Model):
