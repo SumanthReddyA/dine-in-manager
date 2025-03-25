@@ -47,6 +47,7 @@
             *   Edit existing menu item details.
             *   Delete menu items.
     *   **Frontend-Backend API Integration:** Integrate the React Staff UI with the Flask backend API endpoints for table and menu management.
+    *   **Debugging and Logging Enhancements:** Implement basic debugging techniques (e.g., print statements, logging) and configure logging levels for different environments to aid in development and troubleshooting in subsequent phases.
 *   **Tech Stack (Phase 2):** React, JavaScript, HTML, CSS, Axios (for API calls), (building upon Phase 1 backend stack)
 *   **Testing (Phase 2):**
     *   **Frontend Unit Tests (Jest/React Testing Library):** Write unit tests for React components, focusing on UI logic and component behavior in isolation.
