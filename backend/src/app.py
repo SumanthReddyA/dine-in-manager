@@ -110,6 +110,18 @@ def get_table(table_id):
     }
     return jsonify({'table': table_data}), 200
 
+@app.errorhandler(404)
+def not_found_error(error):
+    return jsonify({'message': 'Resource not found', 'resource': request.path}), 404
+
+@app.errorhandler(400)
+def bad_request_error(error):
+    return jsonify({'message': 'Bad request'}), 400
+
+@app.errorhandler(405)
+def method_not_allowed_error(error):
+    return jsonify({'message': 'Method Not Allowed'}), 405
+
 @app.route('/tables/<int:table_id>', methods=['PUT'])
 def update_table(table_id):
     table = Table.query.get_or_404(table_id)
