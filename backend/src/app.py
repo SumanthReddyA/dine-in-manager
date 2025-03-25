@@ -6,9 +6,11 @@ import os
 app = Flask(__name__)
 
 # Construct database URI, reading password from environment variable
+db_username = os.environ.get('POSTGRES_USERNAME')
 db_password = os.environ.get('POSTGRES_PASSWORD')
+
 if db_password:
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:{db_password}@localhost/dine_in_db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_username}:{db_password}@localhost/dine_in_db'
 else:
     raise ValueError("POSTGRES_PASSWORD environment variable not set. Please set it to your PostgreSQL password.")
 
