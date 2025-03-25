@@ -163,4 +163,4 @@ def test_create_order_empty_menu_item_ids(client):
     assert response.status_code == 400 # Expect Bad Request error
     data = response.get_json()
     assert 'message' in data
-    assert 'menu_item_ids' in data['message'] # Check error message mentions "menu_item_ids"
+    assert 'Menu item IDs' in data['message'] # Check error message mentions "Menu item IDs"
